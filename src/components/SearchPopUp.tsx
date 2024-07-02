@@ -30,7 +30,7 @@ const Modal = ({ isOpen, onClose, children }: ComponentProps<any>) => {
   return (
     <div
       onClick={handleBackgroundClick}
-      className="fixed z-10 inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+      className="fixed z-10 inset-0 bg-color1 bg-opacity-50 flex items-center justify-center"
     >
       <div
         style={{
@@ -38,7 +38,7 @@ const Modal = ({ isOpen, onClose, children }: ComponentProps<any>) => {
           minHeight: "300px",
           animation: "fadeInTranslate 0.2s cubic-bezier(.4, 0, .2, 1)",
         }}
-        className="bg-white p-3 relative rounded-lg bottom-1/5"
+        className="bg-color2 p-3 relative rounded-lg bottom-1/5"
       >
         {children}
       </div>

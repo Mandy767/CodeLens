@@ -1,5 +1,5 @@
-import DashboardMain from "@/components/DashboardMain";
-import DashboardNav from "@/components/DashboardNav";
+import DashboardMain from "@/components/dashboard/DashboardMain";
+import DashboardNav from "@/components/dashboard/DashboardNav";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Metadata } from "next";

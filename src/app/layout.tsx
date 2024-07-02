@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 import SessionWrapper from "@/components/SessionWrapper";
+import ModalPopUp from "@/components/ModelPopUp";
 
 export const metadata: Metadata = {
   title: {
@@ -27,6 +28,7 @@ export default function RootLayout({
             inter.variable
           )}
         >
+          <ModalPopUp />
           {children}
           {/* <AuthContextProvider>{children}</AuthContextProvider> */}
         </body>
