@@ -91,6 +91,17 @@ body {
   margin: 0;
 }
 
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #24292e;
+  border-radius: 1rem;
+  width: 8px;
+}
+
 ::selection {
   background: #afbed348;
   color: #bcd3eb;

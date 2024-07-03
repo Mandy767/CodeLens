@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import AllRepositories from "@/components/user/AllRepositories";
 import UserNavbar from "@/components/user/UserNavbar";
 import { Metadata } from "next";
@@ -70,6 +71,7 @@ export default async function UserPage({
         </div>
         <AllRepositories username={user?.login} />
       </div>
+      <Footer />
     </div>
   );
 }
