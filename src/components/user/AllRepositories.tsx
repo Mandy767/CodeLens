@@ -2,6 +2,13 @@
 import React, { useState, useEffect } from "react";
 import color from "@/data/Languages.json";
 import { Input } from "../ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 interface Repository {
   name: string;
@@ -33,6 +40,7 @@ async function getRepositories(username: string): Promise<Repository[] | null> {
 export default function AllRepositories({ username }: { username: string }) {
   const [repos, setRepos] = useState<Repository[] | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("all");
 
   useEffect(() => {
     async function fetchRepositories() {
@@ -42,26 +50,56 @@ export default function AllRepositories({ username }: { username: string }) {
     fetchRepositories();
   }, [username]);
 
-  const filteredRepos = repos?.filter((repo) =>
-    repo.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const uniqueLanguages: string[] = Array.from(
+    new Set(
+      repos
+        ?.map((repo) => repo.language)
+        .filter((language): language is string => language !== null)
+    )
   );
+
+  const filteredRepos = repos
+    ?.filter((repo) =>
+      repo.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .filter((repo) =>
+      selectedLanguage !== "all" ? repo.language === selectedLanguage : true
+    );
 
   return (
     <div className="flex flex-col items-center flex-1 gap-4 text-color8 min-h-[50dvh]">
-      <Input
-        className="bg-[#e9ebed21] text-color7 focus-visible:ring-offset-1 focus-visible:ring-offset-color6 placeholder:text-[#7f7f7f] placeholder:text-[clamp(16px,3dwv,28px)] h-10 border-none "
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        required
-        placeholder="Search Repositories"
-      />
+      <div className="flex w-full flex-col md:flex-row gap-3">
+        <Input
+          className="bg-color2 border-color3 border text-color7 focus-visible:ring-offset-1 focus-visible:ring-offset-color3 placeholder:text-[#7f7f7f] placeholder:text-[clamp(16px,3dwv,28px)] h-10"
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          required
+          placeholder="Search Repositories"
+        />
+        <Select
+          onValueChange={(value) => setSelectedLanguage(value)}
+          defaultValue="all"
+        >
+          <SelectTrigger className="md:w-56 w-full bg-color2 text-color7 border-color3 focus-visible:ring-offset-0">
+            <SelectValue placeholder="Languages" />
+          </SelectTrigger>
+          <SelectContent className="bg-color2 border-color3 text-color7">
+            <SelectItem value="all">All Languages</SelectItem>
+            {uniqueLanguages.map((language) => (
+              <SelectItem key={language} value={language}>
+                {language}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
       {!filteredRepos ? (
         <section className="border border-color4 w-full flex-1 rounded p-4 flex items-center justify-center text-color8 min-h-[50dvh]">
           No Repositories Found
         </section>
       ) : (
-        <section className="border-t border-color4 flex-1 rounded flex flex-col items-center text-color8 min-h-[50dvh] w-full">
+        <section className="border-t border-color4 flex-1 flex flex-col items-center text-color8 min-h-[50dvh] w-full">
           {filteredRepos.map((item, index) => (
             <div
               key={index}

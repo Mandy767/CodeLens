@@ -8,7 +8,7 @@ export default function UserNavbar() {
 
   return (
     <nav className="w-full flex justify-between border-b border-b-color4 items-center p-4">
-      <span className="text-xl">CodeLens</span>
+      <span className="text-xl font-semibold">CodeLens</span>
 
       <div className="flex gap-2 items-center">
         <div className="md:flex hidden gap-4 items-center">
