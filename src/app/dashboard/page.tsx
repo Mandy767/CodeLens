@@ -7,7 +7,7 @@ import React from "react";
 
 export default function Page() {
   return (
-    <section className="flex font-clash h-screen w-full">
+    <section className="flex font-clash h-[100dvh] w-full">
       <div className="p-4 w-[300px] h-full hidden md:flex flex-col flex-none border-r text-color8 border-color4 bg-color2">
         <div className="w-full flex justify-between">
           <div></div>

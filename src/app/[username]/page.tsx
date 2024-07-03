@@ -1,3 +1,4 @@
+import AllRepositories from "@/components/user/AllRepositories";
 import UserNavbar from "@/components/user/UserNavbar";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -48,8 +49,8 @@ export default async function UserPage({
   return (
     <div className="text-color8">
       <UserNavbar />
-      <div className="max-w-5xl p-4 mx-auto pt-10 flex md:flex-col flex-row gap-4">
-        <div className="flex md:w-[256px] flex-col h-16 md:h-fit w-full">
+      <div className="max-w-5xl p-4 mx-auto pt-10 flex flex-col md:flex-row gap-6">
+        <div className="flex md:w-[256px] flex-col md:h-fit w-full">
           <div className="flex flex-row items-center md:items-start gap-4 md:flex-col">
             <Image
               height={0}
@@ -67,6 +68,7 @@ export default async function UserPage({
 
           <div className="text-sm text-color8 mt-6">{user?.bio}</div>
         </div>
+        <AllRepositories username={user?.login} />
       </div>
     </div>
   );
