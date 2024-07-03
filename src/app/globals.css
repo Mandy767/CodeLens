@@ -83,6 +83,14 @@ body,
   }
 }
 
+html {
+  overflow-y: scroll;
+}
+
+body {
+  margin: 0;
+}
+
 ::selection {
   background: #afbed348;
   color: #bcd3eb;
